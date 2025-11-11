@@ -1,3 +1,16 @@
+# 🔒 Gestor de Tareas con Seguridad
+Sistema web para gestión de tareas con dashboard de seguridad integrado, gráficos estadísticos y sistema de logs de auditoría.
+
+## 🚀 Instalación y Ejecución
+**Clonar el repositorio**
+``bash
+git clone https://github.com/AlexAlonsoM/Gestor-de-Tareas-con-Seguridad.git
+cd Gestor-de-Tareas-con-Seguridad
+npm install
+npm start
+
+---------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
