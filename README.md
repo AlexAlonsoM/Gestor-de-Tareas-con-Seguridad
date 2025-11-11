@@ -7,6 +7,7 @@ Sistema web para gestión de tareas con dashboard de seguridad integrado, gráfi
 git clone https://github.com/AlexAlonsoM/Gestor-de-Tareas-con-Seguridad.git
 ## cd Gestor-de-Tareas-con-Seguridad
 npm install
+
 npm start
 
 ---------------------------------------
