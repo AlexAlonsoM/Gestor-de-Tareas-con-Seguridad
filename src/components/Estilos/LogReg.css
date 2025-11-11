@@ -1,0 +1,89 @@
+/*FONDO DEGRADADO*/
+.contenedor-auth {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/*TARJETA BLANCA*/
+.tarjeta-auth {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+/*TITULO DE LA TARJETA*/
+.tarjeta-auth h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+/*(label + input)*/
+.grupo-formulario {
+  margin-bottom: 1.5rem; /*Mismo margen para todos*/
+}
+
+.grupo-formulario label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.grupo-formulario input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box; /*Para que el padding no afecte el ancho*/
+}
+
+.grupo-formulario input:focus {
+  border-color: #667eea;
+}
+
+.boton-principal {
+  width: 100%;
+  padding: 0.75rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+}
+
+.boton-principal:hover {
+  background: #5a67d8;
+}
+
+.boton-secundario {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  text-decoration: underline;   /*Subrayado*/
+  margin-left: 0.5rem;
+}
+
+.boton-secundario:hover {
+  color: #5a67d8;
+}
+
+.texto-enlace {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}

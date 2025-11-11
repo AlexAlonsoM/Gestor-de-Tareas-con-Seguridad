@@ -1,0 +1,378 @@
+/*CONTENEDOR PRINCIPAL*/
+.grafo-container {
+  padding: 1rem;
+}
+
+/*ESTADO VACIO CUANDO NO HAY DATOS*/
+.grafo-empty {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: #697386;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: #a0aec0;
+  font-weight: 600;
+}
+
+/*HEADER*/
+.grafo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-titulo h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1f36;
+}
+
+.header-titulo p {
+  margin: 0;
+  color: #697386;
+  font-weight: 600;
+}
+
+.btn-ayuda {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-ayuda:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/*MODAL DE AYUDA*/
+.modal-ayuda-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-ayuda-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+
+/*Animacion del modal*/
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f5f5f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #697386;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: #ef4444;
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-ayuda-content h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/*SECCIONES DE AYUDA*/
+.ayuda-seccion {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.ayuda-seccion h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #667eea;
+}
+
+.ayuda-seccion p {
+  margin: 0 0 0.8rem 0;
+  color: #697386;
+  line-height: 1.6;
+}
+
+.ayuda-seccion ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+  color: #697386;
+  line-height: 1.8;
+}
+
+/*BOTON DE ENTENDIDO*/
+.btn-entendido {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-entendido:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+/*LEYENDA INTERPRETACION DEL GRAFO*/
+.grafo-leyenda {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.leyenda-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.leyenda-titulo {
+  font-weight: 800;
+  color: #1a1f36;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.leyenda-item span {
+  color: #697386;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.leyenda-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*AREA DONDE SE DIBUJA EL GRAFO*/
+.grafo-canvas {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.vis-network-container {
+  width: 100%;
+  height: 600px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/*CONTROLES E INSTRUCCIONES*/
+.grafo-controles {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.grafo-controles p {
+  margin: 0;
+  color: #697386;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/*TOOLTIP PERSONALIZADO PARA NODOS*/
+.grafo-tooltip {
+  position: absolute;
+  background: linear-gradient(135deg, #1a1f36 0%, #2d3748 100%);
+  color: white;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 999999;
+  pointer-events: none;
+  max-width: 300px;
+  animation: tooltipFadeIn 0.2s ease;
+  border: 2px solid rgba(102, 126, 234, 0.5);
+  will-change: transform;
+}
+
+/*Animacion de aparición del tooltip*/
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grafo-tooltip strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: #667eea;
+  font-weight: 800;
+}
+
+.grafo-tooltip .tooltip-label {
+  color: #a0aec0;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.grafo-tooltip em {
+  display: block;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+  .grafo-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .grafo-leyenda {
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .leyenda-grupo {
+    width: 100%;
+  }
+
+  .vis-network-container {
+    height: 450px;
+  }
+
+  .modal-ayuda-content {
+    padding: 1.5rem;
+  }
+
+  .grafo-tooltip {
+    max-width: 250px;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-titulo h3 {
+    font-size: 1.2rem;
+  }
+
+  .vis-network-container {
+    height: 350px;
+  }
+
+  .grafo-leyenda {
+    padding: 1rem;
+  }
+
+  .leyenda-titulo {
+    font-size: 0.9rem;
+  }
+
+  .leyenda-item span {
+    font-size: 0.85rem;
+  }
+}
