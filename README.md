@@ -1,6 +1,8 @@
 # 🔒 Gestor de Tareas con Seguridad
 Sistema web para gestión de tareas con dashboard de seguridad integrado, gráficos estadísticos y sistema de logs de auditoría.
 
+Video Demostracion V1: https://youtu.be/cb2q59tZ5To
+
 ## 🚀 Instalación y Ejecución
 **Clonar el repositorio**
 ``bash
