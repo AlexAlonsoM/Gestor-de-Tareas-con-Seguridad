@@ -6,6 +6,7 @@ import {
 } from 'recharts';  //Libreria para crear graficos
 import './Estilos/Dashboard.css';
 import GrafoRelaciones from './GrafoRelaciones';
+import EstadisticasAvanzadas from './EstadisticasAvanzadas';
 import DashboardSeguridad from './DashboardSeguridad';
 
 const Dashboard = ({ usuarioId }) => {
@@ -99,7 +100,7 @@ const Dashboard = ({ usuarioId }) => {
     <div className="dashboard-container">
       {/*HEADER*/}
       <div className="dashboard-header">
-        <h1>📊 Dashboard Analytics</h1>
+        <h1>Dashboard Analytics</h1>
         <p>Analisis completo de tus tareas</p>
       </div>
 
@@ -317,7 +318,9 @@ const Dashboard = ({ usuarioId }) => {
 
         {/*ANALISIS*/}
         {seccionActiva === 'analisis' && (
-          <div className="analisis-section">
+          <EstadisticasAvanzadas tareas={tareas} />
+          /*ESTADISTICAS ANTERIORES*/
+          /*<div className="analisis-section">
             <h3>📈 Analisis Detallado</h3>
             
             <div className="analisis-grid">
@@ -353,9 +356,8 @@ const Dashboard = ({ usuarioId }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div>*/
         )}
-
       </div>
     </div>
   );

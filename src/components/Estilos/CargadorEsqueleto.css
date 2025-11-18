@@ -1,0 +1,140 @@
+/*ANIMACION BASE*/
+@keyframes esqueleto-cargando {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.esqueleto-contenedor {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+/*ESQUELETO TAREA*/
+.esqueleto-tarea {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: aparecerGradual 0.3s ease;
+}
+
+@keyframes aparecerGradual {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.esqueleto-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+}
+
+.esqueleto-titulo,
+.esqueleto-descripcion,
+.esqueleto-insignia,
+.esqueleto-info,
+.esqueleto-acciones,
+.esqueleto-stat-numero,
+.esqueleto-stat-texto {
+  background: linear-gradient(90deg, #f0f0f0 0px, #e0e0e0 40px, #f0f0f0 80px);
+  background-size: 200px 100%;
+  animation: esqueleto-cargando 1.5s infinite;
+  border-radius: 8px;
+}
+
+.esqueleto-titulo {
+  height: 24px;
+  width: 60%;
+}
+
+.esqueleto-insignias {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.esqueleto-insignia {
+  height: 28px;
+  width: 80px;
+  border-radius: 20px;
+}
+
+.esqueleto-descripcion {
+  height: 16px;
+  width: 100%;
+  margin-bottom: 0.8rem;
+}
+
+.esqueleto-descripcion.corta {
+  width: 70%;
+}
+
+.esqueleto-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.esqueleto-info {
+  height: 20px;
+  width: 150px;
+}
+
+.esqueleto-acciones {
+  height: 40px;
+  width: 200px;
+}
+
+/*ESQUELETO ESTADISTICAS*/
+.esqueleto-stats-cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.esqueleto-stat-tarjeta {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.esqueleto-stat-numero {
+  height: 48px;
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+.esqueleto-stat-texto {
+  height: 20px;
+  width: 120px;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 1024px) {
+  .esqueleto-contenedor {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .esqueleto-contenedor {
+    grid-template-columns: 1fr;
+  }
+
+  .esqueleto-stats-cuadricula {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

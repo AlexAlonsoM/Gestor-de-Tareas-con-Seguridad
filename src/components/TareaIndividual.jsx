@@ -1,17 +1,13 @@
 import React from 'react';
+import GestorEtiquetas from './GestorEtiquetas';
 
-//tarea: todos los datos de la tarea
-//onEditar: funcion para editar la tarea
-//onEliminar: funcion para eliminar la tarea  
-//onCambiarEstado: funcion para cambiar el estado de la tarea
-const TareaIndividual = ({ tarea, onEditar, onEliminar, onCambiarEstado }) => {
+const TareaIndividual = ({ tarea, onEditar, onEliminar, onCambiarEstado, usuarioId, onActualizar }) => {
   return (
     <div className={`tarjeta-tarea prioridad-${tarea.prioridad} estado-${tarea.estado}`}>
       
-      {/* HEADER */}
+      {/*HEADER*/}
       <div className="tarea-header">
         <h3>{tarea.titulo}</h3>
-        {/*Etiquetas para prioridad y categoria*/}
         <div className="badges">
           <span className={`badge-prioridad ${tarea.prioridad}`}>
             {tarea.prioridad.toUpperCase()}
@@ -22,34 +18,47 @@ const TareaIndividual = ({ tarea, onEditar, onEliminar, onCambiarEstado }) => {
         </div>
       </div>
       
-      {/*DESCRIPCION de la tarea*/}
+      {/*DESCRIPCION*/}
       <p className="tarea-descripcion">{tarea.descripcion}</p>
       
-      {/*FOOTER (info adicional)*/}
+      {/*ETIQUETAS*/}
+      <GestorEtiquetas 
+        usuarioId={usuarioId}
+        tareaId={tarea.id}
+        etiquetasAsignadas={tarea.etiquetas || []}
+        onActualizar={onActualizar}
+      />
+      
+      {/*FOOTER*/}
       <div className="tarea-footer">
-        {/*Informacion fecha */}
-        <div className="tarea-info">  {/*Fecha de creacion formateada*/}
+        <div className="tarea-info">
           <small>📅 {new Date(tarea.fecha_creacion).toLocaleDateString()}</small>
-          {tarea.fecha_limite && (
-            <small>⏰ Límite: {new Date(tarea.fecha_limite).toLocaleDateString()}</small>
+          {tarea.fecha_limite && tarea.fecha_limite !== '0000-00-00' && (
+            <small>⏰ Limite: {new Date(tarea.fecha_limite).toLocaleDateString()}</small>
           )}
         </div>
         
-        {/*ACCIONES (para interactuar con la tarea)*/}
         <div className="tarea-acciones">
-          <select value={tarea.estado}  //Valor actual del estado
-          onChange={(e) => onCambiarEstado(tarea, e.target.value)}className="select-estado" //Llama a la funcion cuando cambia
-          >  
+          {/*CAMBIAR ESTADO*/}
+          <select 
+            value={tarea.estado} 
+            onChange={(e) => onCambiarEstado(tarea, e.target.value)}
+            className="select-estado"
+          >
             <option value="pendiente">⏳ Pendiente</option>
             <option value="en_progreso">🔄 En Progreso</option>
             <option value="completada">✅ Completada</option>
           </select>
           
           {/*EDITAR*/}
-          <button onClick={() => onEditar(tarea)} className="btn-editar">✏️</button>
+          <button onClick={() => onEditar(tarea)} className="btn-editar">
+            ✏️
+          </button>
           
           {/*ELIMINAR*/}
-          <button onClick={() => onEliminar(tarea.id)} className="btn-eliminar">🗑️</button>
+          <button onClick={() => onEliminar(tarea.id)} className="btn-eliminar">
+            🗑️
+          </button>
         </div>
       </div>
     </div>

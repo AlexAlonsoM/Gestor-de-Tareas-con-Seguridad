@@ -1,0 +1,287 @@
+/*GESTOR ETIQUETAS*/
+.gestor-etiquetas {
+  margin-top: 1rem;
+  position: relative;
+}
+
+/*ETIQUETAS ASIGNADAS*/
+.etiquetas-asignadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.etiqueta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.etiqueta-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.etiqueta-tag span {
+  user-select: none;
+}
+
+.btn-quitar-etiqueta {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.btn-quitar-etiqueta:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+}
+
+.btn-add-etiqueta {
+  background: rgba(102, 126, 234, 0.1);
+  border: 2px dashed rgba(102, 126, 234, 0.4);
+  color: #667eea;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-etiqueta:hover {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+/*SELECTOR*/
+.selector-etiquetas {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  z-index: 1000;
+  min-width: 250px;
+  animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.selector-header span {
+  font-weight: 800;
+  color: #1a1f36;
+  font-size: 0.9rem;
+}
+
+.selector-header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #697386;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.selector-header button:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.lista-etiquetas-disponibles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.etiqueta-opcion {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.etiqueta-opcion:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-crear-nueva {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-crear-nueva:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/*NUEVA ETIQUETA*/
+.form-nueva-etiqueta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.form-nueva-etiqueta input {
+  padding: 0.7rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.form-nueva-etiqueta input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.selector-color {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.color-opcion {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.color-opcion:hover {
+  transform: scale(1.1);
+}
+
+.color-opcion.activo {
+  border-color: white;
+  box-shadow: 0 0 0 2px #1a1f36;
+  transform: scale(1.15);
+}
+
+.acciones-nueva {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-guardar-etiqueta,
+.btn-cancelar-etiqueta {
+  flex: 1;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar-etiqueta {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.btn-guardar-etiqueta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-cancelar-etiqueta {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.btn-cancelar-etiqueta:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/*OVERLAY PARA PORTAL*/
+.selector-etiquetas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  backdrop-filter: blur(3px);
+  animation: aparecer 0.3s ease;
+}
+
+/*Actualizar selector para que este centrado*/
+.selector-etiquetas-overlay .selector-etiquetas {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-top: 0;
+  max-width: 400px;
+  width: 90%;
+}

@@ -35,17 +35,15 @@
   50% { opacity: 0.8; }
 }
 
-/*HEADER GLASSMORPHISM (VIDRIO)*/
+/*HEADER*/
 .header-principal {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
   padding: 1.5rem 3rem;
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .header-content {
@@ -88,10 +86,7 @@
 
 .user-info strong {
   font-weight: 900;
-  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: white;
 }
 
 .btn-logout {

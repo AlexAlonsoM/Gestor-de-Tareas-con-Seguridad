@@ -1,0 +1,344 @@
+/*CONTENEDOR*/
+.perfil-container {
+  padding: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+/*CARD DE PERFIL*/
+.perfil-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.perfil-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+.perfil-info h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1a1f36;
+}
+
+.perfil-info p {
+  margin: 0;
+  color: #697386;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/*DETALLES*/
+.perfil-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detalle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.detalle-item:hover {
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transform: translateX(5px);
+}
+
+.detalle-label {
+  font-weight: 800;
+  color: #667eea;
+  font-size: 1rem;
+}
+
+.detalle-valor {
+  font-weight: 700;
+  color: #1a1f36;
+  font-size: 1.1rem;
+}
+
+/*ACCIONES*/
+.perfil-acciones {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-accion {
+  flex: 1;
+  padding: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-nombre {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.btn-nombre:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+}
+
+.btn-password {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-password:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+/*MODAL*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f5f5f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #697386;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: #ef4444;
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-content h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/*FORMULARIO*/
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  color: #1a1f36;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 5px rgba(102, 126, 234, 0.1);
+  background: white;
+}
+
+.form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #f0f0f0;
+}
+
+.password-hint {
+  display: block;
+  margin-top: 0.5rem;
+  color: #697386;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/*MENSAJES*/
+.mensaje {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  animation: fadeIn 0.3s ease;
+}
+
+.mensaje-exito {
+  background: #d1fae5;
+  color: #065f46;
+  border: 2px solid #10b981;
+}
+
+.mensaje-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
+}
+
+/*ACCIONES MODAL*/
+.modal-acciones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-guardar,
+.btn-cancelar {
+  flex: 1;
+  padding: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-guardar:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.btn-guardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancelar {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+  .perfil-container {
+    padding: 1.5rem;
+  }
+
+  .perfil-card {
+    padding: 2rem;
+  }
+
+  .perfil-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .perfil-acciones {
+    flex-direction: column;
+  }
+
+  .modal-acciones {
+    flex-direction: column;
+  }
+}

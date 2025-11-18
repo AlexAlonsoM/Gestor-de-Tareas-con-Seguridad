@@ -1,21 +1,20 @@
 import React from 'react';
 import TareaIndividual from './TareaIndividual';
 
-//tareas: array de tareas
-const ListaTareas = ({ tareas, onEditar, onEliminar, onCambiarEstado }) => {
+//Tareas: array de tareas
+const ListaTareas = ({ tareas, onEditar, onEliminar, onCambiarEstado, usuarioId, onActualizar }) => {
   
   if (tareas.length === 0) {
     return (
       <div className="sin-tareas">
-        <p>📭 No hay tareas en esta categoria</p>
+        <p>📭 No hay tareas en esta categoría</p>
       </div>
     );
   }
 
-  //-----------------------------------------------------------------------------
+  //----------------------------------------------------------
   return (
     <div className="lista-tareas">
-      {/*Mapea cada tarea a un componente individual (TareaIndividual)*/}
       {tareas.map(tarea => (
         <TareaIndividual
           key={tarea.id}
@@ -23,6 +22,8 @@ const ListaTareas = ({ tareas, onEditar, onEliminar, onCambiarEstado }) => {
           onEditar={onEditar}
           onEliminar={onEliminar}
           onCambiarEstado={onCambiarEstado}
+          usuarioId={usuarioId}
+          onActualizar={onActualizar}
         />
       ))}
     </div>

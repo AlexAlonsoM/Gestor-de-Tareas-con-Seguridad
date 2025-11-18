@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ListaTareas from './ListaTareas';
 import EditTarea from './EditTarea';
+import BuscadorAvanzado from './BuscadorAvanzado';
+import CargadorEsqueleto from './CargadorEsqueleto';
+import Toast from './Toast';
+import { useToast } from './useToast';
 import './Estilos/GestionTareas.css';
 
 const GestionTareas = ({ usuarioId }) => {
-  const [tareas, setTareas] = useState([]);                   //Almacena todas las tareas del usuario
-  const [mostrarModal, setMostrarModal] = useState(false);    //Controla si mostrar el modal
-  const [tareaEditando, setTareaEditando] = useState(null);   //Tarea que se estA editando (null = nueva tarea)
-  const [filtroEstado, setFiltroEstado] = useState('todas');  //Filtro para mostrar tareas (Por defecto todas)
+  const [tareas, setTareas] = useState([]);                               //Almacena todas las tareas del usuario
+  const [tareasFiltradas, setTareasFiltradas] = useState([]);             //Almacena las tareas despues de aplicar filtros del buscador
+  const [mostrarModal, setMostrarModal] = useState(false);                //Controla si mostrar el modal
+  const [tareaEditando, setTareaEditando] = useState(null);               //Tarea que se esta editando (null = nueva tarea)
+  const [cargando, setCargando] = useState(true);                         //Estado de carga
+  const { toasts, cerrarToast, exito, error, advertencia } = useToast();  //Mostrar notificaciones
 
   //CARGAR TAREAS
   useEffect(() => {
@@ -15,15 +21,20 @@ const GestionTareas = ({ usuarioId }) => {
   }, [usuarioId]);
 
   const cargarTareas = async () => {
+    setCargando(true);  //Activar carga
     try {
       //Hacer peticion GET al servidor para obtener las tareas del usuario
       const respuesta = await fetch(`http://localhost/Tareas/obtener_tareas.php?usuario_id=${usuarioId}`);
       const datos = await respuesta.json();
       if (datos.success) {
-        setTareas(datos.tareas);  //Tareas recibidas
+        setTareas(datos.tareas);            //Tareas recibidas
+        setTareasFiltradas(datos.tareas);   //Inicializar tareas filtradas
       }
-    } catch (error) {
-      console.error('Error al cargar tareas:', error);
+    } catch (err) {
+      error('Error al cargar las tareas');  //Toast de error
+      console.error('Error al cargar tareas:', err);
+    } finally {
+      setCargando(false);  //Desactivar carga
     }
   };
 
@@ -45,10 +56,14 @@ const GestionTareas = ({ usuarioId }) => {
       
       const datos = await respuesta.json();
       if (datos.success) {
+        error('🗑️ Tarea eliminada');;  //Toast exito
         cargarTareas();   //Recargar la lista
+      } else {
+        error('❌ Error al eliminar la tarea');  //Toast error
       }
-    } catch (error) {
-      console.error('Error:', error);
+    } catch (err) {
+      error('❌ Error de conexión');  //Toast error
+      console.error('Error:', err);
     }
   };
 
@@ -70,11 +85,19 @@ const GestionTareas = ({ usuarioId }) => {
       });
       
       const datos = await respuesta.json();
-      if (datos.success) {  
+      if (datos.success) {
+        if (nuevoEstado === 'completada') {
+          exito('🎉 ¡Tarea completada!');  //Toast especial para completadas
+        } else {
+          exito('✅ Estado actualizado');  //Toast exito
+        }
         cargarTareas();   //Recargar la lista
+      } else {
+        error('❌ Error al actualizar estado');  //Toast error
       }
-    } catch (error) {
-      console.error('Error:', error);
+    } catch (err) {
+      error('❌ Error de conexión');  //Toast error
+      console.error('Error:', err);
     }
   };
 
@@ -90,11 +113,10 @@ const GestionTareas = ({ usuarioId }) => {
     setTareaEditando(null);
   };
 
-  //FILTRAR TAREA
-  const tareasFiltradas = tareas.filter(tarea => {
-    if (filtroEstado === 'todas') return true;  //Mostrar todas
-    return tarea.estado === filtroEstado;       //Mostrar solo del estado seleccionado
-  });
+  //RECIBIR TAREAS FILTRADAS DEL BUSCADOR
+  const manejarResultados = (resultados) => {
+    setTareasFiltradas(resultados);  //Actualizar tareas filtradas
+  };
 
   //ESTADISTICAS
   const estadisticas = {
@@ -106,74 +128,83 @@ const GestionTareas = ({ usuarioId }) => {
 
   //----------------------------------------------------------------------------------------------------
   return (
-    <div className="tareas-container">
-      {/*ESTADISTICAS*/}
-      <div className="estadisticas-tareas">
-        <div className="stat-card total">
-          <h3>{estadisticas.total}</h3>
-          <p>Total</p>
-        </div>
-        <div className="stat-card pendientes">
-          <h3>{estadisticas.pendientes}</h3>
-          <p>Pendientes</p>
-        </div>
-        <div className="stat-card progreso">
-          <h3>{estadisticas.en_progreso}</h3>
-          <p>En Progreso</p>
-        </div>
-        <div className="stat-card completadas">
-          <h3>{estadisticas.completadas}</h3>
-          <p>Completadas</p>
-        </div>
-      </div>
-
-      {/*BARRA DE ACCIONES (Botones y filtros)*/}
-      <div className="acciones-tareas">
-        <button onClick={() => abrirModal()} className="btn-nueva-tarea">
-          ➕ Nueva Tarea
-        </button>
-        
-        <div className="filtros">
-          <button 
-            className={filtroEstado === 'todas' ? 'activo' : ''} 
-            onClick={() => setFiltroEstado('todas')}>
-            Todas
-          </button>
-          <button 
-            className={filtroEstado === 'pendiente' ? 'activo' : ''} 
-            onClick={() => setFiltroEstado('pendiente')}>
-            Pendientes
-          </button>
-          <button 
-            className={filtroEstado === 'en_progreso' ? 'activo' : ''} 
-            onClick={() => setFiltroEstado('en_progreso')}>
-            En Progreso
-          </button>
-          <button 
-            className={filtroEstado === 'completada' ? 'activo' : ''} 
-            onClick={() => setFiltroEstado('completada')}>
-            Completadas
-          </button>
-        </div>
-      </div>
-
-      {/*LISTA DE TAREAS*/}
-      <ListaTareas 
-        tareas={tareasFiltradas}
-        onEditar={abrirModal}
-        onEliminar={eliminarTarea}
-        onCambiarEstado={cambiarEstado}
-      />
-
-      {/*MODAL*/}
-      {mostrarModal && (
-        <EditTarea
-          tarea={tareaEditando}
-          usuarioId={usuarioId}
-          onCerrar={cerrarModal}
-          onActualizar={cargarTareas}
+    <div>
+      {/*NOTIFICACIONES TOAST*/}
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          mensaje={toast.mensaje}
+          tipo={toast.tipo}
+          onClose={() => cerrarToast(toast.id)}
         />
-      )}
+      ))}
+
+      <div className="tareas-container">
+        {/*ESTADISTICAS*/}
+        {cargando ? (
+          <CargadorEsqueleto tipo="estadistica" cantidad={4} />
+        ) : (
+          <div className="estadisticas-tareas">
+            <div className="stat-card total">
+              <h3>{estadisticas.total}</h3>
+              <p>Total</p>
+            </div>
+            <div className="stat-card pendientes">
+              <h3>{estadisticas.pendientes}</h3>
+              <p>Pendientes</p>
+            </div>
+            <div className="stat-card progreso">
+              <h3>{estadisticas.en_progreso}</h3>
+              <p>En Progreso</p>
+            </div>
+            <div className="stat-card completadas">
+              <h3>{estadisticas.completadas}</h3>
+              <p>Completadas</p>
+            </div>
+          </div>
+        )}
+
+        {/*BOTON NUEVA TAREA*/}
+        <div className="acciones-tareas">
+          <button onClick={() => abrirModal()} className="btn-nueva-tarea">
+            ➕ Nueva Tarea
+          </button>
+        </div>
+
+        {/*BUSCADOR AVANZADO (Busqueda por texto + filtros multiples + ordenamiento)*/}
+        {!cargando && <BuscadorAvanzado tareas={tareas} onResultados={manejarResultados} />}
+
+        {/*LISTA DE TAREAS (Muestra las tareas filtradas)*/}
+        {cargando ? (
+          <CargadorEsqueleto tipo="tarea" cantidad={3} />
+        ) : (
+          <ListaTareas 
+            tareas={tareasFiltradas}
+            onEditar={abrirModal}
+            onEliminar={eliminarTarea}
+            onCambiarEstado={cambiarEstado}
+            usuarioId={usuarioId}
+            onActualizar={cargarTareas}
+          />
+        )}
+
+        {/*MODAL*/}
+        {mostrarModal && (
+          <EditTarea
+            tarea={tareaEditando}
+            usuarioId={usuarioId}
+            onCerrar={cerrarModal}
+            onActualizar={() => {
+              cargarTareas();
+              if (tareaEditando) {
+                advertencia('✏️ Tarea actualizada');
+              } else {
+                exito('✅ Tarea creada');
+              }
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
